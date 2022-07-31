@@ -5,6 +5,7 @@ import TodoItem from "./components/todo-item/TodoItem";
 import TextArea from "./components/input/TextArea";
 import Button from "./components/button/Button";
 import "./App.css";
+import { useState } from "react";
 
 const TODOS_MOCK = [
   {
@@ -35,6 +36,23 @@ const TODOS_MOCK = [
 ];
 
 function App() {
+  const [saveInputChange, setSaveInputChange] = useState("");
+  const [saveTextAreaInput, setSaveTextAreaInput] = useState("");
+  const [handleSubmit, sethandleSubmit] = useState("");
+
+  const handleInputChange = (e) => {
+    setSaveInputChange(e.target.value);
+  };
+
+  const handleTextAreaInput = (e) => {
+    setSaveTextAreaInput(e.target.value);
+  };
+
+  const handleSubmite = (e) => {
+    e.preventDefault();
+    sethandleSubmit(saveInputChange + " " + saveTextAreaInput);
+  };
+
   return (
     <div className="App">
       <div className="app-container">
@@ -43,9 +61,17 @@ function App() {
           */}
         <Card>
           <h2>Create Todo</h2>
-          <form>
-            <Input onChange={() => {}} placeholder="Title" type="text" />
-            <TextArea onChange={() => {}} placeholder="Description" />
+          <form onSubmit={handleSubmite}>
+            <Input
+              onChange={handleInputChange}
+              placeholder="Title"
+              type="text"
+            />
+            <TextArea
+              onChange={handleTextAreaInput}
+              placeholder="Description"
+            />
+            <p>{handleSubmit}</p>
             <Button type="submit">Create</Button>
           </form>
         </Card>
