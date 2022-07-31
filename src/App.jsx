@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "./components/card/Card";
-import Input from "./components/input/Input";
 import TodoItem from "./components/todo-item/TodoItem";
-import TextArea from "./components/input/TextArea";
 import Button from "./components/button/Button";
 import "./App.css";
-import { useState } from "react";
+
+import CreateCard from "./components/new-modal/New-modal";
 
 const TODOS_MOCK = [
   {
@@ -35,23 +34,10 @@ const TODOS_MOCK = [
   },
 ];
 
-function App() {
-  const [saveInputChange, setSaveInputChange] = useState("");
-  const [saveTextAreaInput, setSaveTextAreaInput] = useState("");
-  const [handleSubmit, sethandleSubmit] = useState("");
+function App(props) {
+  const [updateData, setUpdateData] = useState(TODOS_MOCK);
 
-  const handleInputChange = (e) => {
-    setSaveInputChange(e.target.value);
-  };
-
-  const handleTextAreaInput = (e) => {
-    setSaveTextAreaInput(e.target.value);
-  };
-
-  const handleSubmite = (e) => {
-    e.preventDefault();
-    sethandleSubmit(saveInputChange + " " + saveTextAreaInput);
-  };
+  const onAddTeam = (team) => {};
 
   return (
     <div className="App">
@@ -59,23 +45,7 @@ function App() {
         {/* 
             This is your Create Card component.
           */}
-        <Card>
-          <h2>Create Todo</h2>
-          <form onSubmit={handleSubmite}>
-            <Input
-              onChange={handleInputChange}
-              placeholder="Title"
-              type="text"
-            />
-            <TextArea
-              onChange={handleTextAreaInput}
-              placeholder="Description"
-            />
-            <p>{handleSubmit}</p>
-            <Button type="submit">Create</Button>
-          </form>
-        </Card>
-
+        <CreateCard onAddTeam={onAddTeam} />
         {/* 
           My Todos
         */}
@@ -83,8 +53,7 @@ function App() {
           <h1>My todos</h1>
           <Button onClick={() => console.log("Open Modal")}>Add +</Button>
           <div className="list-container">
-            <TodoItem completed={false} />
-            <TodoItem completed={false} />
+            <TodoItem completed={true} />
           </div>
 
           <div className="separator"></div>
