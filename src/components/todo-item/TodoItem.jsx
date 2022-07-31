@@ -16,7 +16,7 @@ const TodoItem = (props) => {
             onChange={handleCheckboxChange}
           />
 
-          <h4>{props.sendtitle}</h4>
+          <h4>{props.sendTitle}</h4>
         </div>
         <div>
           <i className="fa fa-pencil" aria-hidden="true"></i>
@@ -26,7 +26,7 @@ const TodoItem = (props) => {
 
       <div className="separator"></div>
 
-      <p>{props.senddescription}</p>
+      <p>{props.sendDescription}</p>
     </div>
   );
 };
