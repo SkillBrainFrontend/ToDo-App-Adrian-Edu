@@ -37,7 +37,10 @@ const TODOS_MOCK = [
 function App(props) {
   const [updateData, setUpdateData] = useState(TODOS_MOCK);
 
-  const onAddTeam = (team) => {};
+  const AddTeam = (team) => {
+    console.log(team);
+    setUpdateData((preState) => [...prevState, team]);
+  };
 
   return (
     <div className="App">
@@ -45,7 +48,7 @@ function App(props) {
         {/* 
             This is your Create Card component.
           */}
-        <CreateCard onAddTeam={onAddTeam} />
+        <CreateCard onAddTeam={AddTeam} />
         {/* 
           My Todos
         */}

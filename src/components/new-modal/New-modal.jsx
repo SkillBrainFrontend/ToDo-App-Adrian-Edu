@@ -22,7 +22,7 @@ function CreateCard(props) {
     sethandleSubmit(saveInputChange);
     sethandleSubmit(saveTextAreaInput);
 
-    props.onAddTeam({ titlu: saveInputChange, descriere: saveInputChange });
+    props.onAddTeam({ titlu: saveInputChange, descriere: saveTextAreaInput });
   };
 
   return (
