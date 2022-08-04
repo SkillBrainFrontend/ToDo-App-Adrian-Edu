@@ -38,7 +38,6 @@ function App(props) {
   const [updateData, setUpdateData] = useState(TODOS_MOCK);
 
   const AddTeam = (team) => {
-    console.log("echipa", team);
     setUpdateData((prevState) => [...prevState, team]);
   };
 
@@ -60,7 +59,7 @@ function App(props) {
             {updateData
               .filter((val) => {
                 if (val.completed !== false) {
-                  return val;
+                  return true;
                 }
               })
               .map((val, key) => {
@@ -80,7 +79,7 @@ function App(props) {
 
           <h2>Completed</h2>
           <div className="list-container">
-            <TodoItem completed={true} />
+            <TodoItem completed={false} />
             <TodoItem completed={true} />
           </div>
         </Card>
