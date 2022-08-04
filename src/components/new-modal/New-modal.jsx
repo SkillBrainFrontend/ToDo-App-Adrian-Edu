@@ -22,7 +22,10 @@ function CreateCard(props) {
     sethandleSubmit(saveInputChange);
     sethandleSubmit(saveTextAreaInput);
 
-    props.onAddTeam({ titlu: saveInputChange, descriere: saveTextAreaInput });
+    props.onAddTeam({
+      titlu: saveInputChange,
+      descriere: saveTextAreaInput,
+    });
   };
 
   return (
@@ -31,7 +34,7 @@ function CreateCard(props) {
       <form onSubmit={handleSubmite}>
         <Input onChange={handleInputChange} placeholder="Title" type="text" />
         <TextArea onChange={handleTextAreaInput} placeholder="Description" />
-        <p>{handleSubmit}</p>
+
         <Button type="submit">Create</Button>
       </form>
     </Card>

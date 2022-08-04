@@ -1,4 +1,4 @@
-import React, { useState, prevState } from "react";
+import React, { useState } from "react";
 import Card from "./components/card/Card";
 import TodoItem from "./components/todo-item/TodoItem";
 import Button from "./components/button/Button";
@@ -35,11 +35,11 @@ const TODOS_MOCK = [
 ];
 
 function App(props) {
-  const [updateData, setUpdateData] = useState("");
+  const [updateData, setUpdateData] = useState(TODOS_MOCK);
 
   const AddTeam = (team) => {
-    setUpdateData(team);
-    // setUpdateData((preState) => [...prevState, team]);
+    console.log("echipa", team);
+    setUpdateData((prevState) => [...prevState, team]);
   };
 
   return (
@@ -57,11 +57,23 @@ function App(props) {
           <h1>My todos</h1>
           <Button onClick={() => console.log("Open Modal")}>Add +</Button>
           <div className="list-container">
-            <TodoItem
-              completed={false}
-              sendTitle={updateData.titlu}
-              sendDescription={updateData.descriere}
-            />
+            {updateData
+              .filter((val) => {
+                if (val.completed !== false) {
+                  return val;
+                }
+              })
+              .map((val, key) => {
+                return (
+                  <div key={key}>
+                    <TodoItem
+                      completed={false}
+                      sendTitle={val.title}
+                      sendDescription={val.description}
+                    />
+                  </div>
+                );
+              })}
           </div>
 
           <div className="separator"></div>
