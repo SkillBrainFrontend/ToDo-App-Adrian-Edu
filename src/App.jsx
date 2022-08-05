@@ -11,43 +11,44 @@ const TODOS_MOCK = [
     title: "Todo 1",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. At id illo repellendus non maiores in pariatur aliquam iure fugit amet!",
-    completed: false,
+    completed: true,
   },
   {
     id: "2",
     title: "Todo 2",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit!",
-    completed: false,
+    completed: true,
   },
   {
     id: "3",
     title: "Todo 3",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit!",
-    completed: true,
+    completed: false,
   },
   {
     id: "4",
     title: "Todo 4",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit!",
-    completed: true,
+    completed: false,
   },
 ];
 
 function App(props) {
   const [updateData, setUpdateData] = useState(TODOS_MOCK);
-  const [isOpen, setIsOpen] = useState("true");
+  const [isOpen, setIsOpen] = useState("");
 
   const AddTeam = (team) => {
     setUpdateData((prevState) => [...prevState, team]);
+    setIsOpen(false);
   };
 
   const openModal = () => {
-    setIsOpen(false);
+    setIsOpen(true);
   };
 
-  const close = () => {
-    setIsOpen(false);
-  };
+  // const close = () => {
+  //   setIsOpen(false);
+  // };
 
   return (
     <div className="App">
@@ -55,11 +56,12 @@ function App(props) {
         {/* 
             This is your Create Card component.
           */}
+
         <Modal
           isOpen={isOpen}
-          onClose={close}
+          //  onClose={close}
           onAddTeam={AddTeam}
-          onCreateClick={openModal}
+          //  onCreateClick={openModal}
         />
 
         {/* 
@@ -67,7 +69,7 @@ function App(props) {
         */}
         <Card>
           <h1>My todos</h1>
-          <Button onClick={() => console.log("Open Modal")}>Add +</Button>
+          <Button onClick={openModal}>Add +</Button>
           <div className="list-container">
             {updateData
               .filter((val) => {
