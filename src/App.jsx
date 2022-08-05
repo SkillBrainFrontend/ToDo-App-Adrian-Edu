@@ -35,9 +35,18 @@ const TODOS_MOCK = [
 
 function App(props) {
   const [updateData, setUpdateData] = useState(TODOS_MOCK);
+  const [isOpen, setIsOpen] = useState("true");
 
   const AddTeam = (team) => {
     setUpdateData((prevState) => [...prevState, team]);
+  };
+
+  const openModal = () => {
+    setIsOpen(false);
+  };
+
+  const close = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -46,7 +55,12 @@ function App(props) {
         {/* 
             This is your Create Card component.
           */}
-        <Modal isOpen={true} onAddTeam={AddTeam} />
+        <Modal
+          isOpen={isOpen}
+          onClose={close}
+          onAddTeam={AddTeam}
+          onCreateClick={openModal}
+        />
 
         {/* 
           My Todos

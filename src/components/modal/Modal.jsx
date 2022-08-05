@@ -59,7 +59,7 @@ const Modal = (props) => {
           <Input onChange={handleInputChange} placeholder="Title" type="text" />
           <TextArea onChange={handleTextAreaInput} placeholder="Description" />
 
-          <Button type="submit">Create</Button>
+          <Button onClick={props.onCreateClick}>Create</Button>
         </form>
       </Card>
     </div>
