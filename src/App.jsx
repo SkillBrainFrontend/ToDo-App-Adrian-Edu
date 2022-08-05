@@ -3,8 +3,7 @@ import Card from "./components/card/Card";
 import TodoItem from "./components/todo-item/TodoItem";
 import Button from "./components/button/Button";
 import "./App.css";
-
-import CreateCard from "./components/new-modal/New-modal";
+import Modal from "./components/modal/Modal";
 
 const TODOS_MOCK = [
   {
@@ -47,7 +46,7 @@ function App(props) {
         {/* 
             This is your Create Card component.
           */}
-        <CreateCard onAddTeam={AddTeam} />
+        <Modal isOpen={true} onAddTeam={AddTeam} />
 
         {/* 
           My Todos
