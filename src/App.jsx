@@ -4,6 +4,7 @@ import TodoItem from "./components/todo-item/TodoItem";
 import Button from "./components/button/Button";
 import "./App.css";
 import Modal from "./components/modal/Modal";
+import MyForm from "./components/myform/myform";
 
 const TODOS_MOCK = [
   {
@@ -35,7 +36,7 @@ const TODOS_MOCK = [
 
 function App(props) {
   const [updateData, setUpdateData] = useState(TODOS_MOCK);
-  const [isOpen, setIsOpen] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
   const AddTeam = (team) => {
     setUpdateData((prevState) => [...prevState, team]);
@@ -46,9 +47,9 @@ function App(props) {
     setIsOpen(true);
   };
 
-  // const close = () => {
-  //   setIsOpen(false);
-  // };
+  const close = () => {
+    setIsOpen(false);
+  };
 
   return (
     <div className="App">
@@ -57,12 +58,9 @@ function App(props) {
             This is your Create Card component.
           */}
 
-        <Modal
-          isOpen={isOpen}
-          //  onClose={close}
-          onAddTeam={AddTeam}
-          //  onCreateClick={openModal}
-        />
+        <Modal isOpen={isOpen} onClose={close} onCreateClick={openModal}>
+          <MyForm onAddTeam={AddTeam} />
+        </Modal>
 
         {/* 
           My Todos
