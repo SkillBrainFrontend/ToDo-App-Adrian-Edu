@@ -25,7 +25,8 @@ const Modal = (props) => {
         aria-hidden="true"
       ></i>
 
-      <div className="modal-content">{props.children}</div>
+      <div className="modal-content"></div>
+      {props.children}
     </div>
   );
 };

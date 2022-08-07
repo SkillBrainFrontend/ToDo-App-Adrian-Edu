@@ -39,7 +39,11 @@ function App(props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const AddTeam = (team) => {
-    setUpdateData((prevState) => [...prevState, team]);
+    const id = Math.random().toString(36).slice(2, 10);
+    setUpdateData((prevState) => [
+      ...prevState,
+      { ...team, id: id, completed: false },
+    ]);
     setIsOpen(false);
   };
 
@@ -58,8 +62,8 @@ function App(props) {
             This is your Create Card component.
           */}
 
-        <Modal isOpen={isOpen} onClose={close} onCreateClick={openModal}>
-          <MyForm onAddTeam={AddTeam} />
+        <Modal isOpen={isOpen} onClose={close}>
+          <MyForm onAddTeam={AddTeam} onCreateClick={openModal} />
         </Modal>
 
         {/* 
@@ -71,7 +75,7 @@ function App(props) {
           <div className="list-container">
             {updateData
               .filter((val) => {
-                if (val.completed !== false) {
+                if (val.completed === false) {
                   return true;
                 }
               })
