@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Card from "./components/card/Card";
 import TodoItem from "./components/todo-item/TodoItem";
 import Button from "./components/button/Button";
@@ -12,25 +12,25 @@ const TODOS_MOCK = [
     title: "Todo 1",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. At id illo repellendus non maiores in pariatur aliquam iure fugit amet!",
-    completed: true,
+    completed: false,
   },
   {
     id: "2",
     title: "Todo 2",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit!",
-    completed: true,
+    completed: false,
   },
   {
     id: "3",
     title: "Todo 3",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit!",
-    completed: false,
+    completed: true,
   },
   {
     id: "4",
     title: "Todo 4",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit!",
-    completed: false,
+    completed: true,
   },
 ];
 
@@ -96,8 +96,25 @@ function App(props) {
 
           <h2>Completed</h2>
           <div className="list-container">
-            <TodoItem completed={false} />
-            <TodoItem completed={true} />
+            {updateData
+              .filter((val) => {
+                if (val.completed === true) {
+                  return true;
+                }
+              })
+              .map((val, key) => {
+                return (
+                  <div key={key}>
+                    <p>
+                      <TodoItem
+                        completed={false}
+                        sendTitle={val.title}
+                        sendDescription={val.description}
+                      />
+                    </p>
+                  </div>
+                );
+              })}
           </div>
         </Card>
       </div>
