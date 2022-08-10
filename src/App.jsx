@@ -37,6 +37,7 @@ const TODOS_MOCK = [
 function App(props) {
   const [updateData, setUpdateData] = useState(TODOS_MOCK);
   const [isOpen, setIsOpen] = useState(false);
+  const [handlecheckbox, setHandleCheckBox] = useState(TODOS_MOCK);
 
   const AddTeam = (team) => {
     const id = Math.random().toString(36).slice(2, 10);
@@ -53,6 +54,14 @@ function App(props) {
 
   const close = () => {
     setIsOpen(false);
+  };
+
+  const ReciveCheckbox = (item) => {
+    const id = Math.random().toString(36).slice(2, 10);
+    setHandleCheckBox((prevState) => [
+      ...prevState,
+      { ...item, id: id, completed: false },
+    ]);
   };
 
   return (
@@ -86,6 +95,7 @@ function App(props) {
                       completed={false}
                       sendTitle={val.title}
                       sendDescription={val.description}
+                      onChange={ReciveCheckbox}
                     />
                   </div>
                 );
@@ -96,25 +106,7 @@ function App(props) {
 
           <h2>Completed</h2>
           <div className="list-container">
-            {updateData
-              .filter((val) => {
-                if (val.completed === true) {
-                  return true;
-                }
-              })
-              .map((val, key) => {
-                return (
-                  <div key={key}>
-                    <p>
-                      <TodoItem
-                        completed={false}
-                        sendTitle={val.title}
-                        sendDescription={val.description}
-                      />
-                    </p>
-                  </div>
-                );
-              })}
+            <TodoItem completed={false} onChange={ReciveCheckbox} />
           </div>
         </Card>
       </div>
