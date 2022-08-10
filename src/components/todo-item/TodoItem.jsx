@@ -7,6 +7,10 @@ const TodoItem = (props) => {
     console.log(value);
   };
 
+  const RecieveChecout = (data) => {
+    console.log("ba", data);
+  };
+
   return (
     <div className={`todo-item ${props.completed && "todo-completed"}`}>
       <div className="todo-item-header">
@@ -14,6 +18,7 @@ const TodoItem = (props) => {
           <Checkbox
             checked={!!props.completed}
             onChange={handleCheckboxChange}
+            sendCheckout={RecieveChecout}
           />
 
           <h4>{props.sendTitle}</h4>

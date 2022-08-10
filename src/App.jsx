@@ -56,14 +56,6 @@ function App(props) {
     setIsOpen(false);
   };
 
-  const ReciveCheckbox = (item) => {
-    const id = Math.random().toString(36).slice(2, 10);
-    setHandleCheckBox((prevState) => [
-      ...prevState,
-      { ...item, id: id, completed: false },
-    ]);
-  };
-
   return (
     <div className="App">
       <div className="app-container">
@@ -95,7 +87,6 @@ function App(props) {
                       completed={false}
                       sendTitle={val.title}
                       sendDescription={val.description}
-                      onChange={ReciveCheckbox}
                     />
                   </div>
                 );
@@ -106,7 +97,7 @@ function App(props) {
 
           <h2>Completed</h2>
           <div className="list-container">
-            <TodoItem completed={false} onChange={ReciveCheckbox} />
+            <TodoItem completed={false} />
           </div>
         </Card>
       </div>
