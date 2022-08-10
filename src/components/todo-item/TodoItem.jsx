@@ -4,11 +4,9 @@ import Checkbox from "../checkbox/CheckBox";
 
 const TodoItem = (props) => {
   const handleCheckboxChange = (value) => {
-    console.log(value);
-  };
+    const id = Math.random().toString(36).slice(2, 10);
 
-  const RecieveChecout = (data) => {
-    console.log("ba", data);
+    props.sendCheckBox({ valuare: value, id: id });
   };
 
   return (
@@ -18,7 +16,6 @@ const TodoItem = (props) => {
           <Checkbox
             checked={!!props.completed}
             onChange={handleCheckboxChange}
-            sendCheckout={RecieveChecout}
           />
 
           <h4>{props.sendTitle}</h4>

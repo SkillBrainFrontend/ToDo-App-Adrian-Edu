@@ -37,7 +37,7 @@ const TODOS_MOCK = [
 function App(props) {
   const [updateData, setUpdateData] = useState(TODOS_MOCK);
   const [isOpen, setIsOpen] = useState(false);
-  const [handlecheckbox, setHandleCheckBox] = useState(TODOS_MOCK);
+  const [receiveDataFromCheckBox, setreceiveDataFromCheckBox] = useState("");
 
   const AddTeam = (team) => {
     const id = Math.random().toString(36).slice(2, 10);
@@ -56,6 +56,11 @@ function App(props) {
     setIsOpen(false);
   };
 
+  const receiveCheckout = (data) => {
+    setreceiveDataFromCheckBox(data);
+    console.log(data);
+  };
+
   return (
     <div className="App">
       <div className="app-container">
@@ -64,7 +69,12 @@ function App(props) {
           */}
 
         <Modal isOpen={isOpen} onClose={close}>
-          <MyForm onAddTeam={AddTeam} onCreateClick={openModal} />
+          <MyForm
+            onAddTeam={AddTeam}
+            onCreateClick={openModal}
+
+            //}
+          />
         </Modal>
 
         {/* 
@@ -87,17 +97,17 @@ function App(props) {
                       completed={false}
                       sendTitle={val.title}
                       sendDescription={val.description}
-                    />
+                      sendCheckBox={receiveCheckout}
+                    ></TodoItem>
                   </div>
                 );
               })}
           </div>
-
           <div className="separator"></div>
 
           <h2>Completed</h2>
           <div className="list-container">
-            <TodoItem completed={false} />
+            <TodoItem completed={false} sendCheckBox={receiveCheckout} />
           </div>
         </Card>
       </div>

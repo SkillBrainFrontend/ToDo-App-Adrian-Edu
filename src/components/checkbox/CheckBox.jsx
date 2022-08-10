@@ -7,8 +7,6 @@ const Checkbox = (props) => {
 
   const handleCheckboxChange = (e) => {
     setChecked(e.target.checked);
-
-    props.sendCheckout(e.target.value);
   };
 
   useEffect(() => {
