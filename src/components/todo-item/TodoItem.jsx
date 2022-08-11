@@ -5,8 +5,8 @@ import Checkbox from "../checkbox/CheckBox";
 const TodoItem = (props) => {
   const handleCheckboxChange = (value) => {
     const id = Math.random().toString(36).slice(2, 10);
-
-    props.sendCheckBox({ valuare: value, id: id });
+    console.log(value);
+    props.sendCheckBox({ value: value, id: id });
   };
 
   return (

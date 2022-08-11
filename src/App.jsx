@@ -37,7 +37,8 @@ const TODOS_MOCK = [
 function App(props) {
   const [updateData, setUpdateData] = useState(TODOS_MOCK);
   const [isOpen, setIsOpen] = useState(false);
-  const [receiveDataFromCheckBox, setreceiveDataFromCheckBox] = useState("");
+  const [receiveDataFromCheckBox, setreceiveDataFromCheckBox] =
+    useState(TODOS_MOCK);
 
   const AddTeam = (team) => {
     const id = Math.random().toString(36).slice(2, 10);
@@ -56,9 +57,15 @@ function App(props) {
     setIsOpen(false);
   };
 
-  const receiveCheckout = (data) => {
-    setreceiveDataFromCheckBox(data);
-    console.log(data);
+  const receiveCheckout = (id, value) => {
+    setreceiveDataFromCheckBox((prevState) =>
+      prevState.map((team) => {
+        if (id === team.id && value !== team.completed) {
+          return {};
+        }
+        return {};
+      })
+    );
   };
 
   return (
@@ -107,7 +114,24 @@ function App(props) {
 
           <h2>Completed</h2>
           <div className="list-container">
-            <TodoItem completed={false} sendCheckBox={receiveCheckout} />
+            {updateData
+              .filter((val) => {
+                if (val.completed !== false) {
+                  return true;
+                }
+              })
+              .map((val, key) => {
+                return (
+                  <div key={key}>
+                    <TodoItem
+                      completed={false}
+                      sendTitle={val.title}
+                      sendDescription={val.description}
+                      sendCheckBox={receiveCheckout}
+                    ></TodoItem>
+                  </div>
+                );
+              })}
           </div>
         </Card>
       </div>
@@ -116,3 +140,5 @@ function App(props) {
 }
 
 export default App;
+
+// <TodoItem completed={false} sendCheckBox={receiveCheckout} />
