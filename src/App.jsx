@@ -104,10 +104,11 @@ function App(props) {
                 return (
                   <div key={key}>
                     <TodoItem
-                      completed={false}
+                      completed={val.completed}
                       sendTitle={val.title}
                       sendDescription={val.description}
                       sendCheckBox={receiveCheckout}
+                      id={val.id}
                     ></TodoItem>
                   </div>
                 );
@@ -127,10 +128,11 @@ function App(props) {
                 return (
                   <div key={key}>
                     <TodoItem
-                      completed={false}
+                      completed={val.completed}
                       sendTitle={val.title}
                       sendDescription={val.description}
                       sendCheckBox={receiveCheckout}
+                      id={val.id}
                     ></TodoItem>
                   </div>
                 );
