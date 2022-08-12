@@ -60,10 +60,10 @@ function App(props) {
   const receiveCheckout = (id, value) => {
     setreceiveDataFromCheckBox((prevState) =>
       prevState.map((team) => {
-        if (id === team.id && value !== team.completed) {
-          return {};
+        if (id === team.id) {
+          return [...prevState, {}];
         }
-        return {};
+        return team;
       })
     );
   };
