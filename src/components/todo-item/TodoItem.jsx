@@ -6,7 +6,6 @@ const TodoItem = (props) => {
   const handleCheckboxChange = (value) => {
     console.log(value);
     props.sendCheckBox({ value: value, id: props.id });
-    console.log(props.id);
   };
 
   return (

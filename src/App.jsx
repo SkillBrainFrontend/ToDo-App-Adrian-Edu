@@ -37,7 +37,6 @@ const TODOS_MOCK = [
 function App(props) {
   const [updateData, setUpdateData] = useState(TODOS_MOCK);
   const [isOpen, setIsOpen] = useState(false);
-  const [handleClick, setHandleClick] = useState(TODOS_MOCK);
 
   const AddTeam = (team) => {
     const id = Math.random().toString(36).slice(2, 10);
@@ -57,15 +56,14 @@ function App(props) {
   };
 
   const receiveCheckout = (item) => {
-    setHandleClick((prevState) => {
+    setUpdateData((prevState) => {
       const newState = prevState.map((team) => {
-        if (1 === 1) {
-          console.log(item.value);
+        if (team.id === item.id) {
           return { ...team, completed: item.value, id: item.id };
         }
-        console.log(prevState);
         return team;
       });
+      console.log(newState);
       return newState;
     });
   };
