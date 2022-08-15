@@ -57,6 +57,35 @@ function App(props) {
   };
 
   const receiveCheckout = (item) => {
+    setHandleClick((prevState) => {
+      const newState = prevState.map((team) => {
+        if (1 === 1) {
+          console.log(item.value);
+          return { ...team, completed: item.value, id: item.id };
+        }
+        console.log(prevState);
+        return team;
+      });
+      return newState;
+    });
+  };
+
+  /*
+  const ReceiveData = (date) => {
+    setHandleOldData((prevState) => {
+      const newState = prevState.map((val) => {
+        if (val.id === 2) {
+          return { ...val, varsta: date };
+        }
+        return val;
+      });
+      return newState;
+    });
+  };
+*/
+
+  /* Old code
+  const receiveCheckout = (item) => {
     setHandleClick((prevState) =>
       prevState.map((team) => {
         if (team.id === item.id) {
@@ -70,6 +99,8 @@ function App(props) {
       })
     );
   };
+
+  */
 
   return (
     <div className="App">
