@@ -5,7 +5,6 @@ import Button from "./components/button/Button";
 import "./App.css";
 import Modal from "./components/modal/Modal";
 import MyForm from "./components/myform/myform";
-import { useEffect } from "react";
 
 const TODOS_MOCK = [
   {
@@ -38,7 +37,6 @@ const TODOS_MOCK = [
 function App(props) {
   const [updateData, setUpdateData] = useState(TODOS_MOCK);
   const [isOpen, setIsOpen] = useState(false);
-  const [mesaj, setMesaj] = useState("Salut");
 
   const AddTeam = (team) => {
     const id = Math.random().toString(36).slice(2, 10);
@@ -56,10 +54,6 @@ function App(props) {
   const close = () => {
     setIsOpen(false);
   };
-
-  useEffect(() => {
-    console.log(mesaj);
-  });
 
   const receiveCheckout = (item) => {
     setUpdateData((prevState) => {
@@ -100,7 +94,7 @@ function App(props) {
             {updateData
               .filter((val) => {
                 if (val.completed === false) {
-                  return true;
+                  return val;
                 }
               })
               .map((val, key) => {
@@ -124,7 +118,7 @@ function App(props) {
             {updateData
               .filter((val) => {
                 if (val.completed !== false) {
-                  return true;
+                  return val;
                 }
               })
               .map((val, key) => {
