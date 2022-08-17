@@ -4,7 +4,7 @@ import Checkbox from "../checkbox/CheckBox";
 
 const TodoItem = (props) => {
   const handleCheckboxChange = (value) => {
-    console.log(value);
+    console.log(value, props.id);
     props.sendCheckBox({ value: value, id: props.id });
   };
 

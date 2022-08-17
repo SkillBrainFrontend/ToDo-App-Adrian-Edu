@@ -92,11 +92,7 @@ function App(props) {
           <Button onClick={openModal}>Add +</Button>
           <div className="list-container">
             {updateData
-              .filter((val) => {
-                if (val.completed === false) {
-                  return val;
-                }
-              })
+              .filter((val) => !val.completed)
               .map((val, key) => {
                 return (
                   <div key={key}>
@@ -116,11 +112,7 @@ function App(props) {
           <h2>Completed</h2>
           <div className="list-container">
             {updateData
-              .filter((val) => {
-                if (val.completed !== false) {
-                  return val;
-                }
-              })
+              .filter((val) => val.completed)
               .map((val, key) => {
                 return (
                   <div key={key}>
