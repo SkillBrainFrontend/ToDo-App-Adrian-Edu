@@ -59,7 +59,7 @@ function App(props) {
     setUpdateData((prevState) => {
       const newState = prevState.map((team) => {
         if (team.id === item.id) {
-          return { ...team, completed: item.value, id: item.id };
+          return { ...team, completed: item.value };
         }
         return team;
       });
@@ -93,19 +93,16 @@ function App(props) {
           <div className="list-container">
             {updateData
               .filter((val) => !val.completed)
-              .map((val, key) => {
-                return (
-                  <div key={key}>
-                    <TodoItem
-                      completed={val.completed}
-                      sendTitle={val.title}
-                      sendDescription={val.description}
-                      sendCheckBox={receiveCheckout}
-                      id={val.id}
-                    ></TodoItem>
-                  </div>
-                );
-              })}
+              .map((val) => (
+                <TodoItem
+                  key={val.id}
+                  completed={val.completed}
+                  sendTitle={val.title}
+                  sendDescription={val.description}
+                  sendCheckBox={receiveCheckout}
+                  id={val.id}
+                />
+              ))}
           </div>
           <div className="separator"></div>
 
@@ -113,19 +110,16 @@ function App(props) {
           <div className="list-container">
             {updateData
               .filter((val) => val.completed)
-              .map((val, key) => {
-                return (
-                  <div key={key}>
-                    <TodoItem
-                      completed={val.completed}
-                      sendTitle={val.title}
-                      sendDescription={val.description}
-                      sendCheckBox={receiveCheckout}
-                      id={val.id}
-                    ></TodoItem>
-                  </div>
-                );
-              })}
+              .map((val) => (
+                <TodoItem
+                  key={val.id}
+                  completed={val.completed}
+                  sendTitle={val.title}
+                  sendDescription={val.description}
+                  sendCheckBox={receiveCheckout}
+                  id={val.id}
+                />
+              ))}
           </div>
         </Card>
       </div>
