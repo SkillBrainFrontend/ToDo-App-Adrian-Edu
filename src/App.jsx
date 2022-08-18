@@ -102,11 +102,7 @@ function App(props) {
                   sendCheckBox={receiveCheckout}
                   id={val.id}
                   sendIsOpen={isOpen}
-                >
-                  <Modal>
-                    <MyForm />
-                  </Modal>
-                </TodoItem>
+                />
               ))}
           </div>
           <div className="separator"></div>
