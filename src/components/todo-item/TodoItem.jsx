@@ -7,12 +7,6 @@ const TodoItem = (props) => {
     props.sendCheckBox({ value: value, id: props.id });
   };
 
-  const [isOpen, setIsOpen] = useState(props.sendIsOpen);
-
-  const OpenModal = () => {
-    console.log(isOpen);
-  };
-
   return (
     <div className={`todo-item ${props.completed && "todo-completed"}`}>
       <div className="todo-item-header">
@@ -26,11 +20,15 @@ const TodoItem = (props) => {
         </div>
         <div>
           <i
-            onClick={OpenModal}
+            onClick={props.onEdit}
             className="fa fa-pencil"
             aria-hidden="true"
           ></i>
-          <i onClick={() => {}} className="fa fa-trash" aria-hidden="true"></i>
+          <i
+            onClick={props.newTodo}
+            className="fa fa-trash"
+            aria-hidden="true"
+          ></i>
         </div>
       </div>
 

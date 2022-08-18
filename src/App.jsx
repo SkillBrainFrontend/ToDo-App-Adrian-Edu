@@ -67,6 +67,11 @@ function App(props) {
     });
   };
 
+  const handleDeleteToDo = () => {
+    const id = Math.random().toString(36).slice(2, 10);
+    console.log("delete", id);
+  };
+
   return (
     <div className="App">
       <div className="app-container">
@@ -78,7 +83,6 @@ function App(props) {
           <MyForm
             onAddTeam={AddTeam}
             onCreateClick={openModal}
-
             //}
           />
         </Modal>
@@ -102,6 +106,9 @@ function App(props) {
                   sendCheckBox={receiveCheckout}
                   id={val.id}
                   sendIsOpen={isOpen}
+                  onEdit={openModal}
+                  onCloseEdit={close}
+                  newTodo={handleDeleteToDo}
                 />
               ))}
           </div>
@@ -120,6 +127,9 @@ function App(props) {
                   sendCheckBox={receiveCheckout}
                   id={val.id}
                   sendIsOpen={isOpen}
+                  onEdit={openModal}
+                  onCloseEdit={close}
+                  newTodo={handleDeleteToDo}
                 />
               ))}
           </div>
@@ -130,5 +140,3 @@ function App(props) {
 }
 
 export default App;
-
-// <TodoItem completed={false} sendCheckBox={receiveCheckout} />
