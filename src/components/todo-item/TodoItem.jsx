@@ -4,8 +4,13 @@ import Checkbox from "../checkbox/CheckBox";
 
 const TodoItem = (props) => {
   const handleCheckboxChange = (value) => {
-    console.log(value, props.id);
     props.sendCheckBox({ value: value, id: props.id });
+  };
+
+  const [isOpen, setIsOpen] = useState(props.sendIsOpen);
+
+  const OpenModal = () => {
+    console.log(isOpen);
   };
 
   return (
@@ -20,8 +25,12 @@ const TodoItem = (props) => {
           <h4>{props.sendTitle}</h4>
         </div>
         <div>
-          <i className="fa fa-pencil" aria-hidden="true"></i>
-          <i className="fa fa-trash" aria-hidden="true"></i>
+          <i
+            onClick={OpenModal}
+            className="fa fa-pencil"
+            aria-hidden="true"
+          ></i>
+          <i onClick={() => {}} className="fa fa-trash" aria-hidden="true"></i>
         </div>
       </div>
 
