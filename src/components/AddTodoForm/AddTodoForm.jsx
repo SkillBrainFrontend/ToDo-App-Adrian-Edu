@@ -6,14 +6,14 @@ import Card from "../card/Card";
 
 const MyForm = (props) => {
   const [saveInputChange, setSaveInputChange] = useState("");
-  const [saveTextAreaInput, setSaveTextAreaInput] = useState("");
+  const [title, setTitle] = useState("");
 
   const handleInputChange = (e) => {
     setSaveInputChange(e.target.value);
   };
 
   const handleTextAreaInput = (e) => {
-    setSaveTextAreaInput(e.target.value);
+    setTitle(e.target.value);
   };
 
   const handleSubmite = (e) => {
@@ -21,11 +21,11 @@ const MyForm = (props) => {
 
     props.onAddTeam({
       title: saveInputChange,
-      description: saveTextAreaInput,
+      description: title,
     });
 
     setSaveInputChange("");
-    setSaveTextAreaInput("");
+    setTitle("");
   };
 
   return (
@@ -40,7 +40,7 @@ const MyForm = (props) => {
             type="text"
           />
           <TextArea
-            value={saveTextAreaInput}
+            value={title}
             onChange={handleTextAreaInput}
             placeholder="Description"
           />

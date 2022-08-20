@@ -4,7 +4,7 @@ import Checkbox from "../checkbox/CheckBox";
 
 const TodoItem = (props) => {
   const handleCheckboxChange = (value) => {
-    props.sendCheckBox({ value: value, id: props.id });
+    props.onCheckBoxChange({ value: value, id: props.id });
   };
 
   return (
@@ -16,7 +16,7 @@ const TodoItem = (props) => {
             onChange={handleCheckboxChange}
           />
 
-          <h4>{props.sendTitle}</h4>
+          <h4>{props.title}</h4>
         </div>
         <div>
           <i
@@ -34,7 +34,7 @@ const TodoItem = (props) => {
 
       <div className="separator"></div>
 
-      <p>{props.sendDescription}</p>
+      <p>{props.description}</p>
     </div>
   );
 };

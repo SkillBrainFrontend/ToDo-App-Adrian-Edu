@@ -4,7 +4,7 @@ import TodoItem from "./components/todo-item/TodoItem";
 import Button from "./components/button/Button";
 import "./App.css";
 import Modal from "./components/modal/Modal";
-import MyForm from "./components/myform/myform";
+import MyForm from "./components/AddTodoForm/AddTodoForm";
 
 const TODOS_MOCK = [
   {
@@ -35,28 +35,29 @@ const TODOS_MOCK = [
 ];
 
 function App(props) {
-  const [updateData, setUpdateData] = useState(TODOS_MOCK);
+  const [toDoList, setToDoList] = useState(TODOS_MOCK);
   const [isOpen, setIsOpen] = useState(false);
 
-  const AddTeam = (team) => {
+  const addingTeam = (todo) => {
     const id = Math.random().toString(36).slice(2, 10);
-    setUpdateData((prevState) => [
+    setToDoList((prevState) => [
       ...prevState,
-      { ...team, id: id, completed: false },
+      { ...todo, id: id, completed: false },
     ]);
     setIsOpen(false);
   };
 
-  const openModal = () => {
+  const openModal = (e, id) => {
+    console.log("click");
     setIsOpen(true);
   };
 
-  const close = () => {
+  const closeModal = () => {
     setIsOpen(false);
   };
 
-  const receiveCheckout = (item) => {
-    setUpdateData((prevState) => {
+  const onCheckTodo = (item) => {
+    setToDoList((prevState) => {
       const newState = prevState.map((team) => {
         if (team.id === item.id) {
           return { ...team, completed: item.value };
@@ -79,9 +80,9 @@ function App(props) {
             This is your Create Card component.
           */}
 
-        <Modal isOpen={isOpen} onClose={close}>
+        <Modal isOpen={isOpen} onClose={closeModal}>
           <MyForm
-            onAddTeam={AddTeam}
+            onAddTeam={addingTeam}
             onCreateClick={openModal}
             //}
           />
@@ -95,19 +96,19 @@ function App(props) {
           <h1>My todos</h1>
           <Button onClick={openModal}>Add +</Button>
           <div className="list-container">
-            {updateData
+            {toDoList
               .filter((val) => !val.completed)
               .map((val) => (
                 <TodoItem
                   key={val.id}
                   completed={val.completed}
-                  sendTitle={val.title}
-                  sendDescription={val.description}
-                  sendCheckBox={receiveCheckout}
+                  title={val.title}
+                  description={val.description}
+                  onCheckBoxChange={onCheckTodo}
                   id={val.id}
-                  sendIsOpen={isOpen}
+                  isOpen={isOpen}
                   onEdit={openModal}
-                  onCloseEdit={close}
+                  onCloseEdit={closeModal}
                   newTodo={handleDeleteToDo}
                 />
               ))}
@@ -116,19 +117,19 @@ function App(props) {
 
           <h2>Completed</h2>
           <div className="list-container">
-            {updateData
+            {toDoList
               .filter((val) => val.completed)
               .map((val) => (
                 <TodoItem
                   key={val.id}
                   completed={val.completed}
-                  sendTitle={val.title}
-                  sendDescription={val.description}
-                  sendCheckBox={receiveCheckout}
+                  title={val.title}
+                  description={val.description}
+                  onCheckBoxChange={onCheckTodo}
                   id={val.id}
-                  sendIsOpen={isOpen}
+                  isOpen={isOpen}
                   onEdit={openModal}
-                  onCloseEdit={close}
+                  onCloseEdit={closeModal}
                   newTodo={handleDeleteToDo}
                 />
               ))}
