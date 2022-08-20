@@ -4,7 +4,7 @@ import TodoItem from "./components/todo-item/TodoItem";
 import Button from "./components/button/Button";
 import "./App.css";
 import Modal from "./components/modal/Modal";
-import MyForm from "./components/AddTodoForm/AddTodoForm";
+import MyForm from "./components/addTodoForm/AddTodoForm";
 
 const TODOS_MOCK = [
   {
