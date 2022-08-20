@@ -37,6 +37,10 @@ const TODOS_MOCK = [
 function App(props) {
   const [toDoList, setToDoList] = useState(TODOS_MOCK);
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenFrom, setIsOpenFrom] = useState(
+    { openfromadd: "Add" },
+    { openfromedit: "Edit" }
+  );
 
   const addingTeam = (todo) => {
     const id = Math.random().toString(36).slice(2, 10);
@@ -47,13 +51,12 @@ function App(props) {
     setIsOpen(false);
   };
 
-  const openModal = (e, id) => {
-    console.log("click");
-    setIsOpen(true);
-  };
-
   const closeModal = () => {
     setIsOpen(false);
+  };
+
+  const openModal = () => {
+    setIsOpen(true);
   };
 
   const onCheckTodo = (item) => {
@@ -68,9 +71,9 @@ function App(props) {
     });
   };
 
-  const handleDeleteToDo = () => {
-    const id = Math.random().toString(36).slice(2, 10);
-    console.log("delete", id);
+  const handleDeleteToDo = (id) => {
+    const newToDoList = toDoList.filter((prevState) => prevState.id !== id);
+    setToDoList(newToDoList);
   };
 
   return (
