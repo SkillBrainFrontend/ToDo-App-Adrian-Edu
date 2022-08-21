@@ -25,7 +25,7 @@ const TodoItem = (props) => {
             aria-hidden="true"
           ></i>
           <i
-            onClick={props.newTodo}
+            onClick={() => props.newTodo(props.id)}
             className="fa fa-trash"
             aria-hidden="true"
           ></i>

@@ -71,10 +71,10 @@ function App(props) {
     });
   };
 
-  const handleDeleteToDo = () => {
+  const handleDeleteToDo = (id) => {
     setToDoList((prevState) =>
       prevState.filter((item) => {
-        return item.id !== 3;
+        return item.id !== id;
       })
     );
   };
