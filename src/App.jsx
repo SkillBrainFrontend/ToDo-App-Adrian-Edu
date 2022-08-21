@@ -71,9 +71,12 @@ function App(props) {
     });
   };
 
-  const handleDeleteToDo = (id) => {
-    const newToDoList = toDoList.filter((prevState) => prevState.id !== id);
-    setToDoList(newToDoList);
+  const handleDeleteToDo = () => {
+    setToDoList((prevState) =>
+      prevState.filter((item) => {
+        return item.id !== 3;
+      })
+    );
   };
 
   return (
