@@ -4,7 +4,8 @@ import TodoItem from "./components/todo-item/TodoItem";
 import Button from "./components/button/Button";
 import "./App.css";
 import Modal from "./components/modal/Modal";
-import MyForm from "./components/addTodoForm/AddTodoForm";
+import AddForm from "./components/addtodoform/AddTodoForm";
+import EditForm from "./components/editform/EditForm";
 
 const TODOS_MOCK = [
   {
@@ -37,10 +38,7 @@ const TODOS_MOCK = [
 function App(props) {
   const [toDoList, setToDoList] = useState(TODOS_MOCK);
   const [isOpen, setIsOpen] = useState(false);
-  const [isOpenFrom, setIsOpenFrom] = useState(
-    { openfromadd: "Add" },
-    { openfromedit: "Edit" }
-  );
+  const [onEdit, editState] = useState(null, {});
 
   const addingTeam = (todo) => {
     const id = Math.random().toString(36).slice(2, 10);
@@ -87,11 +85,11 @@ function App(props) {
           */}
 
         <Modal isOpen={isOpen} onClose={closeModal}>
-          <MyForm
-            onAddTeam={addingTeam}
-            onCreateClick={openModal}
-            //}
-          />
+          {!editState ? (
+            <AddForm onAddTeam={addingTeam} onCreateClick={openModal} />
+          ) : (
+            <EditForm initialData={editState} onEditClick={onEdit} />
+          )}
         </Modal>
 
         {/* 

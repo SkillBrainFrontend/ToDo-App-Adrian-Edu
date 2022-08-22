@@ -4,7 +4,7 @@ import TextArea from "../input/TextArea";
 import Button from "../button/Button";
 import Card from "../card/Card";
 
-const AddForm = (props) => {
+const EditForm = (props) => {
   const [saveInputChange, setSaveInputChange] = useState("");
   const [title, setTitle] = useState("");
 
@@ -52,4 +52,4 @@ const AddForm = (props) => {
   );
 };
 
-export default AddForm;
+export default EditForm;
