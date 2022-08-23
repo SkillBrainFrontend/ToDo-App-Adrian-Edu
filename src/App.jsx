@@ -38,7 +38,7 @@ const TODOS_MOCK = [
 function App(props) {
   const [toDoList, setToDoList] = useState(TODOS_MOCK);
   const [isOpen, setIsOpen] = useState(false);
-  const [onEdit, editState] = useState(null, {});
+  // const [onEdit, editState] = useState(null);
 
   const addingTeam = (todo) => {
     const id = Math.random().toString(36).slice(2, 10);
@@ -85,11 +85,7 @@ function App(props) {
           */}
 
         <Modal isOpen={isOpen} onClose={closeModal}>
-          {!editState ? (
-            <AddForm onAddTeam={addingTeam} onCreateClick={openModal} />
-          ) : (
-            <EditForm initialData={editState} onEditClick={onEdit} />
-          )}
+          <AddForm onAddTeam={addingTeam} onCreateClick={openModal} />
         </Modal>
 
         {/* 
