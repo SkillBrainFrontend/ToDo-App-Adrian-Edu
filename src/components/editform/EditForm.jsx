@@ -22,6 +22,7 @@ const EditForm = (props) => {
     props.onAddTeam({
       title: saveInputChange,
       description: title,
+      id: props.initialData,
     });
 
     setSaveInputChange("");

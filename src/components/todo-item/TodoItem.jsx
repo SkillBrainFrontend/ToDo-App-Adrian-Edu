@@ -5,6 +5,7 @@ import Checkbox from "../checkbox/CheckBox";
 const TodoItem = (props) => {
   const handleCheckboxChange = (value) => {
     props.onCheckBoxChange({ value: value, id: props.id });
+    props.editButton({ id: props.id });
   };
 
   return (
