@@ -6,6 +6,7 @@ import "./App.css";
 import Modal from "./components/modal/Modal";
 import AddForm from "./components/addtodoform/AddTodoForm";
 import EditForm from "./components/editform/EditForm";
+import { useEffect } from "react";
 
 const TODOS_MOCK = [
   {
@@ -79,12 +80,17 @@ function App(props) {
 
   const onEdit = (id) => {
     const gaseste = toDoList.find((item) => {
+      // console.log("item.id", item.id);
+      //  console.log("id", id);
       return item.id === id;
     });
+    setEditState(gaseste);
     setIsOpen(true);
-    console.log(gaseste);
-    return setEditState(gaseste);
   };
+
+  useEffect(() => {
+    console.log(editState);
+  }, [editState]);
 
   return (
     <div className="App">
@@ -94,10 +100,10 @@ function App(props) {
           */}
 
         <Modal isOpen={isOpen} onClose={closeModal}>
-          {editState ? (
+          {!editState ? (
             <AddForm onAddTeam={addingTeam} onCreateClick={openModal} />
           ) : (
-            <EditForm intialData={editState} onAddTeam={addingTeam} />
+            <EditForm intialData={editState} onEditTeam={addingTeam} />
           )}
         </Modal>
 

@@ -5,28 +5,31 @@ import Button from "../button/Button";
 import Card from "../card/Card";
 
 const EditForm = (props) => {
-  const [saveInputChange, setSaveInputChange] = useState("");
-  const [title, setTitle] = useState("");
+  const [saveInputChange, setSaveInputChange] = useState(
+    props.intialData.title
+  );
+  const [description, setDescription] = useState(props.intialData.description);
 
   const handleInputChange = (e) => {
     setSaveInputChange(e.target.value);
   };
 
   const handleTextAreaInput = (e) => {
-    setTitle(e.target.value);
+    setDescription(e.target.value);
   };
 
   const handleSubmite = (e) => {
     e.preventDefault();
 
-    props.onAddTeam({
+    props.onEdit({
       title: saveInputChange,
-      description: title,
-      // id: props.initialData,
+      description: description,
+      id: props.intialData.id,
+      completed: props.initialData.completed,
     });
 
-    setSaveInputChange(""); // aici ajung datele cand dau edit
-    setTitle(""); // aici ajung datele cand dau edit
+    setSaveInputChange("");
+    setDescription("");
   };
 
   return (
@@ -41,7 +44,7 @@ const EditForm = (props) => {
             type="text"
           />
           <TextArea
-            value={title}
+            value={description}
             onChange={handleTextAreaInput}
             placeholder="Description"
           />
