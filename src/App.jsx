@@ -82,6 +82,7 @@ function App(props) {
       return item.id === id;
     });
     setIsOpen(true);
+    console.log(gaseste);
     return setEditState(gaseste);
   };
 
