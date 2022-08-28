@@ -88,9 +88,42 @@ function App(props) {
     setIsOpen(true);
   };
 
+  /* 
+
   useEffect(() => {
     console.log(editState);
   }, [editState]);
+
+  */
+
+  const onEditUpdateData = (item) => {
+    setToDoList((prevState) => {
+      const newState = prevState.map((team) => {
+        if (team.id === item.id) {
+          return {
+            ...team,
+            id: item.id,
+            title: item.title,
+            description: item.description,
+            completed: item.completed,
+          };
+        }
+        return team;
+      });
+      return newState;
+    });
+  };
+
+  /*
+  [
+      ...prevState,
+      { ...todo, id: id, completed: false },
+    ]);
+    */
+
+  useEffect(() => {
+    console.log(toDoList);
+  }, [toDoList]);
 
   return (
     <div className="App">
@@ -103,7 +136,11 @@ function App(props) {
           {!editState ? (
             <AddForm onAddTeam={addingTeam} onCreateClick={openModal} />
           ) : (
-            <EditForm intialData={editState} onEditTeam={addingTeam} />
+            <EditForm
+              intialData={editState}
+              onEditTeam={addingTeam}
+              onEditUpdateData={onEditUpdateData}
+            />
           )}
         </Modal>
 

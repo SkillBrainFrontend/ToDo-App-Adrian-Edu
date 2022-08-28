@@ -21,11 +21,18 @@ const EditForm = (props) => {
   const handleSubmite = (e) => {
     e.preventDefault();
 
-    props.onEdit({
+    props.onEditTeam({
       title: saveInputChange,
       description: description,
       id: props.intialData.id,
-      completed: props.initialData.completed,
+      completed: props.intialData.completed,
+    });
+
+    props.onEditUpdateData({
+      title: saveInputChange,
+      description: description,
+      id: props.intialData.id,
+      completed: props.intialData.completed,
     });
 
     setSaveInputChange("");
