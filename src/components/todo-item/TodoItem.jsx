@@ -5,7 +5,6 @@ import Checkbox from "../checkbox/CheckBox";
 const TodoItem = (props) => {
   const handleCheckboxChange = (value) => {
     props.onCheckBoxChange({ value: value, id: props.id });
-    props.editButton({ id: props.id });
   };
 
   return (
@@ -21,7 +20,7 @@ const TodoItem = (props) => {
         </div>
         <div>
           <i
-            onClick={props.onEdit}
+            onClick={() => props.editButton(props.id)}
             className="fa fa-pencil"
             aria-hidden="true"
           ></i>

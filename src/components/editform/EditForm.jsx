@@ -22,11 +22,11 @@ const EditForm = (props) => {
     props.onAddTeam({
       title: saveInputChange,
       description: title,
-      id: props.initialData,
+      // id: props.initialData,
     });
 
-    setSaveInputChange("");
-    setTitle("");
+    setSaveInputChange(""); // aici ajung datele cand dau edit
+    setTitle(""); // aici ajung datele cand dau edit
   };
 
   return (

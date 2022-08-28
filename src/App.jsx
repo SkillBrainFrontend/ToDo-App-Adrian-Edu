@@ -78,7 +78,11 @@ function App(props) {
   };
 
   const onEdit = (id) => {
-    setEditState(id);
+    const gaseste = toDoList.find((item) => {
+      return item.id === id;
+    });
+    setIsOpen(true);
+    return setEditState(gaseste);
   };
 
   return (
@@ -92,7 +96,7 @@ function App(props) {
           {editState ? (
             <AddForm onAddTeam={addingTeam} onCreateClick={openModal} />
           ) : (
-            <EditForm intialData={editState} />
+            <EditForm intialData={editState} onAddTeam={addingTeam} />
           )}
         </Modal>
 
@@ -115,7 +119,7 @@ function App(props) {
                   onCheckBoxChange={onCheckTodo}
                   id={val.id}
                   isOpen={isOpen}
-                  onEdit={openModal}
+                  //  onEdit={openModal}
                   onCloseEdit={closeModal}
                   newTodo={handleDeleteToDo}
                   editButton={onEdit}
@@ -137,7 +141,7 @@ function App(props) {
                   onCheckBoxChange={onCheckTodo}
                   id={val.id}
                   isOpen={isOpen}
-                  onEdit={openModal}
+                  //  onEdit={openModal}
                   onCloseEdit={closeModal}
                   newTodo={handleDeleteToDo}
                   editButton={onEdit}
