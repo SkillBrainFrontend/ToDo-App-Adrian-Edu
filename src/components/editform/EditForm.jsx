@@ -21,17 +21,19 @@ const EditForm = (props) => {
   const handleSubmite = (e) => {
     e.preventDefault();
 
+    /*
     props.onEditTeam({
+      id: props.intialData.id,
       title: saveInputChange,
       description: description,
-      id: props.intialData.id,
       completed: props.intialData.completed,
     });
+    */
 
     props.onEditUpdateData({
+      id: props.intialData.id,
       title: saveInputChange,
       description: description,
-      id: props.intialData.id,
       completed: props.intialData.completed,
     });
 
@@ -42,7 +44,7 @@ const EditForm = (props) => {
   return (
     <div>
       <Card>
-        <h2>Create Todo</h2>
+        <h2>Edit Todo</h2>
         <form onSubmit={handleSubmite}>
           <Input
             value={saveInputChange}
@@ -56,7 +58,7 @@ const EditForm = (props) => {
             placeholder="Description"
           />
 
-          <Button onClick={props.onCreateClick}>Create</Button>
+          <Button onClick={props.onEditUpdateData}>Save</Button>
         </form>
       </Card>
     </div>

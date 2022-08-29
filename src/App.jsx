@@ -99,7 +99,7 @@ function App(props) {
   const onEditUpdateData = (item) => {
     setToDoList((prevState) => {
       const newState = prevState.map((team) => {
-        if (team.id === item.id) {
+        if (item.id === team.id) {
           return {
             ...team,
             id: item.id,
@@ -110,20 +110,10 @@ function App(props) {
         }
         return team;
       });
+      setIsOpen(false);
       return newState;
     });
   };
-
-  /*
-  [
-      ...prevState,
-      { ...todo, id: id, completed: false },
-    ]);
-    */
-
-  useEffect(() => {
-    console.log(toDoList);
-  }, [toDoList]);
 
   return (
     <div className="App">
@@ -138,7 +128,7 @@ function App(props) {
           ) : (
             <EditForm
               intialData={editState}
-              onEditTeam={addingTeam}
+              //    onEditTeam={addingTeam}
               onEditUpdateData={onEditUpdateData}
             />
           )}
