@@ -84,16 +84,15 @@ function App(props) {
       //  console.log("id", id);
       return item.id === id;
     });
+    console.log("edit");
     setEditState(gaseste);
     setIsOpen(true);
   };
 
   /* 
-
   useEffect(() => {
     console.log(editState);
   }, [editState]);
-
   */
 
   const onEditUpdateData = (item) => {
@@ -128,7 +127,6 @@ function App(props) {
           ) : (
             <EditForm
               intialData={editState}
-              //    onEditTeam={addingTeam}
               onEditUpdateData={onEditUpdateData}
             />
           )}
@@ -153,7 +151,6 @@ function App(props) {
                   onCheckBoxChange={onCheckTodo}
                   id={val.id}
                   isOpen={isOpen}
-                  //  onEdit={openModal}
                   onCloseEdit={closeModal}
                   newTodo={handleDeleteToDo}
                   editButton={onEdit}
@@ -175,7 +172,6 @@ function App(props) {
                   onCheckBoxChange={onCheckTodo}
                   id={val.id}
                   isOpen={isOpen}
-                  //  onEdit={openModal}
                   onCloseEdit={closeModal}
                   newTodo={handleDeleteToDo}
                   editButton={onEdit}
