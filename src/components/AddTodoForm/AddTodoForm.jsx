@@ -3,30 +3,55 @@ import Input from "../input/Input";
 import TextArea from "../input/TextArea";
 import Button from "../button/Button";
 import Card from "../card/Card";
+import { useEffect } from "react";
+import "./AddTodoForm.css";
 
 const AddForm = (props) => {
-  const [saveInputChange, setSaveInputChange] = useState("");
-  const [title, setTitle] = useState("");
+  const [saveTitleChange, setSaveTitleChang] = useState("");
+  const [saveDescription, setSaveDescription] = useState("");
+  const [condition, setCondition] = useState({
+    saveTitleChange: "",
+    saveDescription: "",
+    isValid: true,
+  });
 
   const handleInputChange = (e) => {
-    setSaveInputChange(e.target.value);
+    setSaveTitleChang(e.target.value);
   };
 
   const handleTextAreaInput = (e) => {
-    setTitle(e.target.value);
+    setSaveDescription(e.target.value);
   };
 
   const handleSubmite = (e) => {
     e.preventDefault();
 
     props.onAddTeam({
-      title: saveInputChange,
-      description: title,
+      title: saveTitleChange,
+      description: saveDescription,
     });
 
-    setSaveInputChange("");
-    setTitle("");
+    setSaveTitleChang("");
+    setSaveDescription("");
   };
+
+  useEffect(() => {
+    if (condition.saveTitleChange === "") {
+      setCondition((prevState) => ({
+        ...prevState,
+        saveTitleChange: "This field is required",
+        saveDescription: "",
+        isValid: false,
+      }));
+    } else {
+      setCondition((prevState) => ({
+        ...prevState,
+        saveTitleChange: "",
+        saveDescription: "",
+        isValid: true,
+      }));
+    }
+  }, [saveDescription, saveTitleChange]);
 
   return (
     <div>
@@ -34,18 +59,27 @@ const AddForm = (props) => {
         <h2>Create Todo</h2>
         <form onSubmit={handleSubmite}>
           <Input
-            value={saveInputChange}
+            value={saveTitleChange}
             onChange={handleInputChange}
             placeholder="Title"
             type="text"
+            className={`primary-input ${condition.saveTitleChange && "error"}`}
           />
+          <span>{condition.saveTitleChange}</span>
           <TextArea
-            value={title}
+            value={saveDescription}
             onChange={handleTextAreaInput}
             placeholder="Description"
+            className={`primary-input textarea ${
+              condition.saveDescription && "error"
+            }`}
           />
 
-          <Button onClick={props.onCreateClick}>Create</Button>
+          <span>{condition.saveDescription}</span>
+
+          <Button disabled={!condition.isValid} onClick={props.onCreateClick}>
+            Create
+          </Button>
         </form>
       </Card>
     </div>

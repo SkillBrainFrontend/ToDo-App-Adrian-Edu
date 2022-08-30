@@ -110,6 +110,7 @@ function App(props) {
         return team;
       });
       setIsOpen(false);
+      setEditState(null);
       return newState;
     });
   };

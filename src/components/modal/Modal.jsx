@@ -18,7 +18,7 @@ const Modal = (props) => {
   }, [props.isOpen]);
 
   return (
-    <div className={`${isOpen ? "modal-wrapper" : "modal-hidden"}`}>
+    <div className={`${isOpen ? "modal-wrapper" : "modal-hidden"} `}>
       <i
         onClick={closeModal}
         className="close-icon fa fa-times-circle-o"
