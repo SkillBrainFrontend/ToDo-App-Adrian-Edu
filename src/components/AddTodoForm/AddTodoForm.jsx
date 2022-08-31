@@ -3,29 +3,30 @@ import Input from "../input/Input";
 import TextArea from "../input/TextArea";
 import Button from "../button/Button";
 import Card from "../card/Card";
+import { useEffect } from "react";
 
 const AddForm = (props) => {
-  const [saveInputChange, setSaveInputChange] = useState("");
-  const [title, setTitle] = useState("");
+  const [saveTitle, setSaveTitle] = useState("");
+  const [saveDescription, setSaveDescription] = useState("");
 
   const handleInputChange = (e) => {
-    setSaveInputChange(e.target.value);
+    setSaveTitle(e.target.value);
   };
 
   const handleTextAreaInput = (e) => {
-    setTitle(e.target.value);
+    setSaveDescription(e.target.value);
   };
 
   const handleSubmite = (e) => {
     e.preventDefault();
 
     props.onAddTeam({
-      title: saveInputChange,
-      description: title,
+      title: saveTitle,
+      description: saveDescription,
     });
 
-    setSaveInputChange("");
-    setTitle("");
+    setSaveTitle("");
+    setSaveDescription("");
   };
 
   return (
@@ -34,13 +35,13 @@ const AddForm = (props) => {
         <h2>Create Todo</h2>
         <form onSubmit={handleSubmite}>
           <Input
-            value={saveInputChange}
+            value={saveTitle}
             onChange={handleInputChange}
             placeholder="Title"
             type="text"
           />
           <TextArea
-            value={title}
+            value={saveDescription}
             onChange={handleTextAreaInput}
             placeholder="Description"
           />

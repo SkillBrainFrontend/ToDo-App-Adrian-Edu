@@ -5,17 +5,17 @@ import Button from "../button/Button";
 import Card from "../card/Card";
 
 const EditForm = (props) => {
-  const [saveInputChange, setSaveInputChange] = useState(
-    props.intialData.title
+  const [saveTitle, setSaveTitle] = useState(props.intialData.title);
+  const [saveDescription, setSaveDescription] = useState(
+    props.intialData.description
   );
-  const [description, setDescription] = useState(props.intialData.description);
 
   const handleInputChange = (e) => {
-    setSaveInputChange(e.target.value);
+    setSaveTitle(e.target.value);
   };
 
   const handleTextAreaInput = (e) => {
-    setDescription(e.target.value);
+    setSaveDescription(e.target.value);
   };
 
   const handleSubmite = (e) => {
@@ -23,13 +23,13 @@ const EditForm = (props) => {
 
     props.onEditUpdateData({
       id: props.intialData.id,
-      title: saveInputChange,
-      description: description,
+      title: saveTitle,
+      description: saveDescription,
       completed: props.intialData.completed,
     });
 
-    setSaveInputChange("");
-    setDescription("");
+    setSaveTitle("");
+    setSaveDescription("");
   };
 
   return (
@@ -38,13 +38,13 @@ const EditForm = (props) => {
         <h2>Edit Todo</h2>
         <form onSubmit={handleSubmite}>
           <Input
-            value={saveInputChange}
+            value={saveTitle}
             onChange={handleInputChange}
             placeholder="Title"
             type="text"
           />
           <TextArea
-            value={description}
+            value={saveDescription}
             onChange={handleTextAreaInput}
             placeholder="Description"
           />
